@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Qiita Dark Mode</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="popup">
+      <p class="eyebrow">Qiita extension</p>
+      <h1>Dark Mode</h1>
+      <p class="description">Switch the Qiita UI to a darker, easier-on-the-eyes theme.</p>
+      <label class="toggle">
+        <input id="theme-toggle" type="checkbox">
+        <span class="slider"></span>
+        <span class="toggle-label">Enable on `qiita.com`</span>
+      </label>
+      <p id="status" class="status" aria-live="polite"></p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

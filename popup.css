@@ -1,0 +1,107 @@
+:root {
+  color-scheme: dark;
+  --popup-bg: linear-gradient(160deg, #0f1722 0%, #0c1118 100%);
+  --popup-surface: rgba(18, 25, 34, 0.92);
+  --popup-border: rgba(125, 211, 252, 0.2);
+  --popup-text: #eef6ff;
+  --popup-text-soft: #adc1d9;
+  --popup-accent: #7dd3fc;
+  --popup-accent-2: #7cfc9e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  font-family: "Segoe UI", "Noto Sans JP", sans-serif;
+  background: var(--popup-bg);
+  color: var(--popup-text);
+}
+
+.popup {
+  padding: 20px;
+  background:
+    radial-gradient(circle at top right, rgba(124, 252, 158, 0.12), transparent 36%),
+    radial-gradient(circle at bottom left, rgba(125, 211, 252, 0.14), transparent 32%),
+    var(--popup-surface);
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--popup-accent-2);
+}
+
+h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.description {
+  margin: 10px 0 18px;
+  line-height: 1.5;
+  color: var(--popup-text-soft);
+}
+
+.toggle {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid var(--popup-border);
+  border-radius: 16px;
+  background: rgba(17, 24, 39, 0.72);
+}
+
+.toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.slider {
+  position: relative;
+  width: 52px;
+  height: 30px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.35);
+  transition: background-color 180ms ease;
+}
+
+.slider::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 180ms ease;
+}
+
+.toggle input:checked + .slider {
+  background: linear-gradient(90deg, var(--popup-accent), var(--popup-accent-2));
+}
+
+.toggle input:checked + .slider::after {
+  transform: translateX(22px);
+}
+
+.toggle-label {
+  font-size: 14px;
+  color: var(--popup-text);
+}
+
+.status {
+  min-height: 20px;
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: var(--popup-text-soft);
+}
