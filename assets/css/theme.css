@@ -1,0 +1,169 @@
+:root {
+  color-scheme: light;
+}
+
+html[data-qiita-dark-mode="on"] {
+  color-scheme: dark;
+  --qiita-dark-bg: #3c3c3c;
+  --qiita-dark-menu-bg: rgba(65, 48, 36);
+  --qiita-dark-header-bg: rgba(38, 31, 27, 0.56);
+  --qiita-article-bg: rgba(33, 29, 26, 0.623);
+  --qiita-dark-surface: rgba(255, 255, 255, 0.184);
+  --qiita-dark-surface-soft: rgba(255, 255, 255, 7%);
+  --qiita-dark-surface-strong: rgba(255, 255, 255, 12%);
+  --qiita-dark-border: 1px solid rgba(255, 245, 230, 0.18);
+  --qiita-dark-divider: rgba(160, 174, 192, 0.12);
+  --qiita-dark-text: #edf3f8;
+  --qiita-dark-text-soft: #c5d0da;
+  --qiita-dark-text-muted: #98a6b5;
+  --qiita-dark-link: #7dd3fc;
+  --qiita-dark-link-hover: #b5b5b5;
+  --qiita-dark-accent: #69db8f;
+  --qiita-dark-accent-soft: rgba(105, 219, 143, 0.14);
+  --qiita-dark-shadow: 0 18px 45px rgba(0, 0, 0, 0.26);
+}
+
+html[data-qiita-dark-mode="on"] body {
+  background: var(--qiita-dark-bg);
+  color: var(--qiita-dark-text);
+}
+
+html[data-qiita-dark-mode="on"]
+  *:not(body):not(button):not(.code-frame):not(.code-frame *):not(
+    [role="menu"]
+  ):not([role="dialog"]):not(img):not(iframe):not(video):not(svg):not(
+    svg path
+  ):not(.note):not(.note *):not(.style-1cpeld6):not(article):not(input):not(
+    textarea
+  ) {
+  background-color: transparent !important;
+}
+
+html[data-qiita-dark-mode="on"] #GlobalHeader {
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--qiita-dark-border);
+  background-color: var(--qiita-dark-header-bg) !important;
+}
+
+html[data-qiita-dark-mode="on"]
+  *:not(.code-frame):not(.code-frame *):not(.note):not(.note *):not(a):not(
+    input
+  ):not(textarea):not(select) {
+  color: var(--qiita-dark-text-soft) !important;
+}
+
+html[data-qiita-dark-mode="on"] h1,
+html[data-qiita-dark-mode="on"] h2,
+html[data-qiita-dark-mode="on"] h3,
+html[data-qiita-dark-mode="on"] h4,
+html[data-qiita-dark-mode="on"] h5,
+html[data-qiita-dark-mode="on"] h6 {
+  color: var(--qiita-dark-text) !important;
+}
+
+html[data-qiita-dark-mode="on"] a {
+  color: var(--qiita-dark-link) !important;
+}
+
+html[data-qiita-dark-mode="on"] a:hover {
+  color: var(--qiita-dark-link-hover) !important;
+}
+
+html[data-qiita-dark-mode="on"] [role*="menu"],
+html[data-qiita-dark-mode="on"] [role*="dialog"] {
+  background-color: var(--qiita-dark-menu-bg) !important;
+  border-color: var(--qiita-dark-border) !important;
+}
+
+html[data-qiita-dark-mode="on"] article {
+  background-color: var(--qiita-article-bg) !important;
+  border: var(--qiita-dark-border) !important;
+  box-shadow: var(--qiita-dark-shadow) !important;
+}
+
+html[data-qiita-dark-mode="on"] input,
+html[data-qiita-dark-mode="on"] textarea,
+html[data-qiita-dark-mode="on"]
+  select
+  html[data-qiita-dark-mode="on"]
+  [role="textbox"] {
+  background: var(--qiita-dark-surface) !important;
+  color: var(--qiita-dark-text) !important;
+  border: 1px solid var(--qiita-dark-border) !important;
+  box-shadow: none !important;
+}
+
+html[data-qiita-dark-mode="on"] input,
+html[data-qiita-dark-mode="on"] textarea,
+html[data-qiita-dark-mode="on"] [role="textbox"] {
+  caret-color: var(--qiita-dark-text-muted) !important;
+}
+
+html[data-qiita-dark-mode="on"] input::placeholder,
+html[data-qiita-dark-mode="on"] textarea::placeholder {
+  color: var(--qiita-dark-text-muted) !important;
+}
+
+html[data-qiita-dark-mode="on"] hr,
+html[data-qiita-dark-mode="on"] table,
+html[data-qiita-dark-mode="on"] tr,
+html[data-qiita-dark-mode="on"] td,
+html[data-qiita-dark-mode="on"] th {
+  border-color: var(--qiita-dark-divider) !important;
+}
+
+html[data-qiita-dark-mode="on"] th,
+html[data-qiita-dark-mode="on"] thead {
+  background: var(--qiita-dark-surface-soft) !important;
+  color: var(--qiita-dark-text) !important;
+}
+
+html[data-qiita-dark-mode="on"] tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+html[data-qiita-dark-mode="on"] blockquote {
+  background: rgba(143, 211, 255, 0.08) !important;
+  color: var(--qiita-dark-text-soft) !important;
+  border-left: 4px solid rgba(143, 211, 255, 0.52) !important;
+}
+
+html[data-qiita-dark-mode="on"] button,
+html[data-qiita-dark-mode="on"] [role="button"],
+html[data-qiita-dark-mode="on"] input[type="submit"],
+html[data-qiita-dark-mode="on"] input[type="button"] {
+  background: var(--qiita-dark-surface-soft) !important;
+  color: var(--qiita-dark-text-soft) !important;
+  border: 1px solid var(--qiita-dark-border) !important;
+}
+
+html[data-qiita-dark-mode="on"] button:hover,
+html[data-qiita-dark-mode="on"] [role="button"]:hover,
+html[data-qiita-dark-mode="on"] input[type="submit"]:hover,
+html[data-qiita-dark-mode="on"] input[type="button"]:hover {
+  background: var(--qiita-dark-surface-strong) !important;
+  color: var(--qiita-dark-text) !important;
+}
+
+html[data-qiita-dark-mode="on"] button[aria-selected="true"],
+html[data-qiita-dark-mode="on"] [aria-current="page"] {
+  background: var(--qiita-dark-accent-soft) !important;
+  color: var(--qiita-dark-accent) !important;
+  border: 1px solid rgba(255, 255, 255, 0.26) !important;
+}
+
+html[data-qiita-dark-mode="on"] button svg,
+html[data-qiita-dark-mode="on"] a svg,
+html[data-qiita-dark-mode="on"] svg {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+html[data-qiita-dark-mode="on"] a[href*="/tags/"] {
+  color: #95ecb0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+
+html[data-qiita-dark-mode="off"] .qiita-darkmode-media {
+  filter: none !important;
+}

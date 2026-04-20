@@ -1,23 +1,111 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Qiita Dark Mode</title>
-    <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="assets/css/popup.css" />
   </head>
   <body>
     <main class="popup">
+      <!-- ===== ヘッダー ===== -->
       <p class="eyebrow">Qiita extension</p>
       <h1>Dark Mode</h1>
-      <p class="description">Switch the Qiita UI to a darker, easier-on-the-eyes theme.</p>
+      <p class="description">
+        QiitaのUIを、目に優しいダークテーマに切り替えます。
+      </p>
+
+      <!-- ===== メインスイッチ ===== -->
       <label class="toggle">
-        <input id="theme-toggle" type="checkbox">
+        <input id="theme-toggle" type="checkbox" />
         <span class="slider"></span>
-        <span class="toggle-label">Enable on `qiita.com`</span>
+        <span class="toggle-label">ダークモードを有効にする</span>
       </label>
       <p id="status" class="status" aria-live="polite"></p>
+
+      <!-- ===== 区切り線 ===== -->
+      <hr class="divider" />
+
+      <!-- ===== スケジュール機能（オプション） ===== -->
+      <h3 class="section-title">スケジュールモード</h3>
+      <p class="section-description">
+        指定した時間に自動でダークモードを有効にします。例えば、夜間に自動でオンにします。
+      </p>
+
+      <!-- スケジュールのメインスイッチ -->
+      <label class="toggle">
+        <input id="schedule-toggle" type="checkbox" />
+        <span class="slider"></span>
+        <span class="toggle-label">スケジュールを有効にする</span>
+      </label>
+
+      <!-- スケジュール詳細コントロールパネル -->
+      <div id="schedule-controls" class="schedule-controls">
+        <!-- 時間入力 -->
+        <div class="time-inputs">
+          <label class="time-input-wrapper">
+            <span class="time-label">開始時間</span>
+            <input
+              id="start-time"
+              type="time"
+              value="22:00"
+              aria-label="スケジュール開始時間"
+            />
+          </label>
+          <label class="time-input-wrapper">
+            <span class="time-label">終了時間</span>
+            <input
+              id="end-time"
+              type="time"
+              value="08:00"
+              aria-label="スケジュール終了時間"
+            />
+          </label>
+        </div>
+
+        <!-- 曜日選択 -->
+        <fieldset class="days-selector">
+          <legend>適用する曜日</legend>
+          <div class="days-grid">
+            <label class="day-checkbox">
+              <input type="checkbox" name="day" value="0" checked />
+              <span>日</span>
+            </label>
+            <label class="day-checkbox">
+              <input type="checkbox" name="day" value="1" checked />
+              <span>月</span>
+            </label>
+            <label class="day-checkbox">
+              <input type="checkbox" name="day" value="2" checked />
+              <span>火</span>
+            </label>
+            <label class="day-checkbox">
+              <input type="checkbox" name="day" value="3" checked />
+              <span>水</span>
+            </label>
+            <label class="day-checkbox">
+              <input type="checkbox" name="day" value="4" checked />
+              <span>木</span>
+            </label>
+            <label class="day-checkbox">
+              <input type="checkbox" name="day" value="5" checked />
+              <span>金</span>
+            </label>
+            <label class="day-checkbox">
+              <input type="checkbox" name="day" value="6" checked />
+              <span>土</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- 使用上の注意 -->
+        <p class="schedule-note">
+          💡 指定した時間範囲内で自動的にダークモードを有効にします。
+        </p>
+      </div>
     </main>
-    <script src="popup.js"></script>
+
+    <!-- スクリプト：順番通りに読み込む必要があります -->
+    <script type="module" src="assets/js/popup.js"></script>
   </body>
 </html>
