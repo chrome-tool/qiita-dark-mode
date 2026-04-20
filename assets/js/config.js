@@ -3,10 +3,9 @@
  * 
  * このファイルにはすべての定数と設定項目が含まれており、
  * 複数のファイルでの重複定義を防ぎます。
- * 設定を一元管理することで、保守と拡張を容易にします。
  */
 
-export const CONFIG = {
+window.CONFIG = {
   // ストレージキー名
   DARK_MODE_KEY: "qiita-dark-mode-enabled",
   SCHEDULE_KEY: "qiita-dark-mode-schedule",
@@ -44,7 +43,6 @@ export const CONFIG = {
   MUTATION_OBSERVER_OPTIONS: {
     childList: true,  // 子ノードの追加・削除を監視
     subtree: true,    // すべての子孫を監視
-    // 注：attributes と characterData は監視しないため、トリガー頻度を削減
   },
   
   // デフォルトのスケジュール設定
@@ -54,14 +52,6 @@ export const CONFIG = {
     endTime: "08:00",     // 日付をまたぐ対応
     days: [0, 1, 2, 3, 4, 5, 6],  // 0=日曜日、6=土曜日、毎日有効
   },
-  
-  // 将来の機能スイッチ（アーキテクチャ用の予約）
-  FEATURES: {
-    SCHEDULE: true,                    // ✅ 実装済み：スケジュールによる起動/停止
-    CUSTOM_COLORS: false,              // 未実装：カラースキームのカスタマイズ
-    WHITELIST: false,                  // 未実装：ページレベルのホワイトリストD
-  },
-
   
   // デバッグモード
   DEBUG: false,

@@ -9,12 +9,11 @@
  * 5. スケジュール制御パネルの表示/非表示を管理する
  */
 
-import { CONFIG } from "./config.js";
-import { getStorage, setStorage } from "./utils.js";
+const CONFIG = window.CONFIG;
 
-// ===== DOM要素の参照 =====
+// DOM要素の参照
 const toggle = document.getElementById("theme-toggle");
-const status = document.getElementById("status");
+const statusEl = document.getElementById("status");
 const scheduleToggle = document.getElementById("schedule-toggle");
 const scheduleControls = document.getElementById("schedule-controls");
 const startTimeInput = document.getElementById("start-time");
@@ -23,10 +22,6 @@ const daysCheckboxes = document.querySelectorAll("input[name='day']");
 
 /**
  * ステータステキストの描画
- * 現在のダークモードの状態とスケジュール情報を表示
- *
- * @param {boolean} enabled - ダークモードが有効かどうか
- * @param {Object} schedule - スケジュール設定オブジェクト
  */
 function renderStatus(enabled, schedule) {
   let text = enabled ? "ダークモード: 有効" : "ダークモード: 無効";
@@ -36,14 +31,11 @@ function renderStatus(enabled, schedule) {
     text += ` (スケジュール: ${schedule.startTime} - ${schedule.endTime}, 毎週${days})`;
   }
 
-  status.textContent = text;
+  statusEl.textContent = text;
 }
 
 /**
  * 曜日配列を読みやすいラベルに変換
- *
- * @param {number[]} days - 0-6 は日曜日から土曜日を表す
- * @returns {string} 例: "月水金"
  */
 function getDayLabels(days) {
   if (!days || days.length === 0) return "なし";
@@ -55,7 +47,6 @@ function getDayLabels(days) {
 
 /**
  * スケジュール制御パネルの表示状態を更新
- * スケジュールが有効な場合は詳細制御を表示、そうでない場合は非表示
  */
 function updateScheduleControlsVisibility() {
   const isScheduleEnabled = scheduleToggle.checked;
@@ -64,8 +55,6 @@ function updateScheduleControlsVisibility() {
 
 /**
  * UIからスケジュール設定を読み込む
- *
- * @returns {Object} スケジュール設定オブジェクト
  */
 function readScheduleFromUI() {
   const days = Array.from(daysCheckboxes)
@@ -76,14 +65,12 @@ function readScheduleFromUI() {
     enabled: scheduleToggle.checked,
     startTime: startTimeInput.value,
     endTime: endTimeInput.value,
-    days: days.length > 0 ? days : [0, 1, 2, 3, 4, 5, 6], // デフォルトは毎日
+    days: days.length > 0 ? days : [0, 1, 2, 3, 4, 5, 6],
   };
 }
 
 /**
  * スケジュール設定をUIに同期する
- *
- * @param {Object} schedule - スケジュール設定オブジェクト
  */
 function syncScheduleToUI(schedule) {
   scheduleToggle.checked = schedule.enabled;
@@ -99,13 +86,11 @@ function syncScheduleToUI(schedule) {
 
 /**
  * ストレージ内のスケジュール設定を更新
- * 現在のUI状態を読み取り、ストレージに保存
  */
 function updateSchedule() {
   const schedule = readScheduleFromUI();
 
   chrome.storage.sync.set({ [CONFIG.SCHEDULE_KEY]: schedule }, () => {
-    // 保存成功後、ステータス表示を更新
     chrome.storage.sync.get(CONFIG.DARK_MODE_KEY, (result) => {
       const enabled = Boolean(result[CONFIG.DARK_MODE_KEY]);
       renderStatus(enabled, schedule);
@@ -115,26 +100,23 @@ function updateSchedule() {
 
 /**
  * Popup UIの初期化
- * ストレージから現在の設定を読み込み、UIに同期
  */
-async function initializeUI() {
+function initializeUI() {
   try {
-    const result = await chrome.storage.sync.get({
-      [CONFIG.DARK_MODE_KEY]: true,
-      [CONFIG.SCHEDULE_KEY]: CONFIG.DEFAULT_SCHEDULE,
-    });
+    chrome.storage.sync.get(
+      {
+        [CONFIG.DARK_MODE_KEY]: true,
+        [CONFIG.SCHEDULE_KEY]: CONFIG.DEFAULT_SCHEDULE,
+      },
+      (result) => {
+        const enabled = Boolean(result[CONFIG.DARK_MODE_KEY]);
+        const schedule = result[CONFIG.SCHEDULE_KEY] || CONFIG.DEFAULT_SCHEDULE;
 
-    const enabled = Boolean(result[CONFIG.DARK_MODE_KEY]);
-    const schedule = result[CONFIG.SCHEDULE_KEY] || CONFIG.DEFAULT_SCHEDULE;
-
-    // テーマトグルの同期
-    toggle.checked = enabled;
-
-    // スケジュールUIの同期
-    syncScheduleToUI(schedule);
-
-    // ステータス表示の更新
-    renderStatus(enabled, schedule);
+        toggle.checked = enabled;
+        syncScheduleToUI(schedule);
+        renderStatus(enabled, schedule);
+      },
+    );
   } catch (e) {
     console.error(
       "[Qiita Dark Mode] Popup UIの初期化中にエラーが発生しました",
@@ -147,16 +129,11 @@ async function initializeUI() {
  * === イベントリスナー ===
  */
 
-/**
- * テーマトグルイベント
- * ユーザーがダークモードを切り替えたときにトリガー
- */
 toggle.addEventListener("change", () => {
   try {
     const enabled = toggle.checked;
 
     chrome.storage.sync.set({ [CONFIG.DARK_MODE_KEY]: enabled }, () => {
-      // 保存成功後、ステータス表示を更新
       chrome.storage.sync.get(CONFIG.SCHEDULE_KEY, (result) => {
         const schedule = result[CONFIG.SCHEDULE_KEY] || CONFIG.DEFAULT_SCHEDULE;
         renderStatus(enabled, schedule);
@@ -167,9 +144,6 @@ toggle.addEventListener("change", () => {
   }
 });
 
-/**
- * スケジュール有効/無効トグルイベント
- */
 scheduleToggle.addEventListener("change", () => {
   try {
     updateScheduleControlsVisibility();
@@ -179,9 +153,6 @@ scheduleToggle.addEventListener("change", () => {
   }
 });
 
-/**
- * 開始時間入力イベント
- */
 startTimeInput.addEventListener("change", () => {
   try {
     updateSchedule();
@@ -190,9 +161,6 @@ startTimeInput.addEventListener("change", () => {
   }
 });
 
-/**
- * 終了時間入力イベント
- */
 endTimeInput.addEventListener("change", () => {
   try {
     updateSchedule();
@@ -201,10 +169,6 @@ endTimeInput.addEventListener("change", () => {
   }
 });
 
-/**
- * 曜日チェックボックスイベント
- * ユーザーが特定の曜日を選択/選択解除したときにトリガー
- */
 daysCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener("change", () => {
     try {
@@ -218,9 +182,6 @@ daysCheckboxes.forEach((checkbox) => {
 /**
  * === 初期化 ===
  */
-document.addEventListener("DOMContentLoaded", async () => {
-  const popupContainer = document.querySelector(".popup");
-  if (popupContainer) {
-    await initializeUI();
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  initializeUI();
 });

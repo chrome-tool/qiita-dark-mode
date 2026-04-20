@@ -17,17 +17,16 @@
   "content_scripts": [
     {
       "matches": ["*://*.qiita.com/*"],
-      "js": ["assets/js/loader.js"],
+      "js": [
+        "assets/js/logger.js",
+        "assets/js/config.js",
+        "assets/js/utils.js",
+        "assets/js/content.js"
+      ],
       "css": ["assets/css/theme.css"],
       "run_at": "document_start"
     }
   ],
   "permissions": ["storage"],
-  "host_permissions": ["*://*.qiita.com/*"],
-  "web_accessible_resources": [
-    {
-      "resources": ["assets/js/*"],
-      "matches": ["*://*.qiita.com/*"]
-    }
-  ]
+  "host_permissions": ["*://*.qiita.com/*"]
 }

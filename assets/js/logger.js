@@ -1,30 +1,32 @@
-import { CONFIG } from "./config.js";
+/**
+ * Qiita Dark Mode - ログ機能
+ */
 
-export function logDebug(message, data = null) {
-  if (CONFIG.DEBUG) {
+window.logDebug = function(message, data = null) {
+  if (window.CONFIG && window.CONFIG.DEBUG) {
     console.log(
-      `%c${CONFIG.LOG_PREFIX}`,
+      `%c${window.CONFIG.LOG_PREFIX}`,
       "color: #8fd3ff; font-weight: bold;",
       message,
-      data || "",
+      data || ""
     );
   }
-}
+};
 
-export function logWarn(message, data = null) {
+window.logWarn = function(message, data = null) {
   console.warn(
-    `%c${CONFIG.LOG_PREFIX}`,
+    `%c${window.CONFIG.LOG_PREFIX}`,
     "color: #ffa500; font-weight: bold;",
     message,
-    data || "",
+    data || ""
   );
-}
+};
 
-export function logError(message, error = null) {
+window.logError = function(message, error = null) {
   console.error(
-    `%c${CONFIG.LOG_PREFIX}`,
+    `%c${window.CONFIG.LOG_PREFIX}`,
     "color: #ff6b6b; font-weight: bold;",
     message,
-    error || "",
+    error || ""
   );
-}
+};

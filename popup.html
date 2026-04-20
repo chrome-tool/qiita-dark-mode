@@ -49,6 +49,7 @@
               id="start-time"
               type="time"
               value="22:00"
+              pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
               aria-label="スケジュール開始時間"
             />
           </label>
@@ -58,6 +59,7 @@
               id="end-time"
               type="time"
               value="08:00"
+              pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
               aria-label="スケジュール終了時間"
             />
           </label>
@@ -105,7 +107,8 @@
       </div>
     </main>
 
-    <!-- スクリプト：順番通りに読み込む必要があります -->
-    <script type="module" src="assets/js/popup.js"></script>
+    <!-- スクリプト：同期的に読み込む（順序が重要） -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/popup.js"></script>
   </body>
 </html>
