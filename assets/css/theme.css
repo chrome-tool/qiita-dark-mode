@@ -8,6 +8,7 @@ html[data-qiita-dark-mode="on"] {
   --qiita-dark-menu-bg: rgba(65, 48, 36);
   --qiita-dark-header-bg: rgba(38, 31, 27, 0.56);
   --qiita-article-bg: rgba(33, 29, 26, 0.623);
+  --qiita-dialog-bg: rgba(33, 29, 26, 0.887);
   --qiita-dark-surface: rgba(255, 255, 255, 0.184);
   --qiita-dark-surface-soft: rgba(255, 255, 255, 7%);
   --qiita-dark-surface-strong: rgba(255, 255, 255, 12%);
@@ -35,7 +36,7 @@ html[data-qiita-dark-mode="on"]
     svg path
   ):not(.note):not(.note *):not(.style-1cpeld6):not(article):not(input):not(
     textarea
-  ) {
+  ):not(dialog):not(dialog *) {
   background-color: transparent !important;
 }
 
@@ -81,12 +82,15 @@ html[data-qiita-dark-mode="on"] article {
   box-shadow: var(--qiita-dark-shadow) !important;
 }
 
+html[data-qiita-dark-mode="on"] dialog,
+html[data-qiita-dark-mode="on"] dialog * {
+  background-color: var(--qiita-dark-bg) !important;
+}
+
 html[data-qiita-dark-mode="on"] input,
 html[data-qiita-dark-mode="on"] textarea,
-html[data-qiita-dark-mode="on"]
-  select
-  html[data-qiita-dark-mode="on"]
-  [role="textbox"] {
+html[data-qiita-dark-mode="on"] select,
+html[data-qiita-dark-mode="on"] [role="textbox"] {
   background: var(--qiita-dark-surface) !important;
   color: var(--qiita-dark-text) !important;
   border: 1px solid var(--qiita-dark-border) !important;
