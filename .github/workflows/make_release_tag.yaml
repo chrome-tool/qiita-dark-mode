@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - main
+permissions:
+  contents: write
+  id-token: write
+
 jobs:
   build:
     name: Create Release
@@ -14,7 +18,7 @@ jobs:
       - name: Set current date
         id: current_date
         env:
-          TZ: 'Asia/Tokyo'
+          TZ: "Asia/Tokyo"
         run: echo "current_date=$(date +'%Y%m%d%H%M')" >> $GITHUB_ENV
       - name: Create release
         id: create_release
