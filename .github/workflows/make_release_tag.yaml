@@ -7,8 +7,8 @@ jobs:
   build:
     name: Create Release
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
     steps:
+      - uses: Kesin11/actions-timeline@v1
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set current date
