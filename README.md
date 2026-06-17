@@ -23,3 +23,9 @@ A lightweight Chrome or Edge extension that adds a dark theme to `qiita.com`.
 - `content.js`: applies the saved theme state to Qiita pages
 - `theme.css`: dark-mode styling rules
 - `popup.html`, `popup.css`, `popup.js`: extension popup UI
+
+## Images
+
+![shot1.png](shot img/shot1.png)
+
+![shot2.png](shot img/shot2.png)
