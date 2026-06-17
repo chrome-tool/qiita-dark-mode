@@ -26,6 +26,6 @@ A lightweight Chrome or Edge extension that adds a dark theme to `qiita.com`.
 
 ## Images
 
-![shot1.png](shot img/shot1.png)
+![shot1.png](images/shot1.png)
 
-![shot2.png](shot img/shot2.png)
+![shot2.png](images/shot2.png)
